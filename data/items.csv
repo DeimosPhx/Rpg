@@ -1,0 +1,3 @@
+#Name;Image_URL;Pickupable;Visible;Solid
+Herbe;/ressources/herbe.png;false;true;false
+Pierre;/ressources/rock.png;false;true;true

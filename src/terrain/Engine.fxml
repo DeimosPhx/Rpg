@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.collections.*?>
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="terrain.ControllerPrincipale">
+   <children>
+     <ScrollPane fx:id="scroll" hbarPolicy="NEVER" layoutX="0.0" layoutY="0.0" pannable="true" prefHeight="600.0" prefWidth="800.0" vbarPolicy="NEVER">
+        <content>
+          <Canvas fx:id="canvas" height="1692.0" nodeOrientation="INHERIT" onMouseClicked="#SetContentClicked" width="2244.0" />
+        </content>
+     </ScrollPane>
+      <VBox prefHeight="600.0" prefWidth="115.0">
+         <children>
+            <Button fx:id="itemAddBt" mnemonicParsing="false" onAction="#OpenItemAdd" prefHeight="32.0" prefWidth="136.0" text="Ajouter item" />
+            <ListView fx:id="lst" prefHeight="625.0" prefWidth="115.0"/>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
