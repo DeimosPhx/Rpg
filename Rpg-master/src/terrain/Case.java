@@ -1,6 +1,8 @@
 package terrain;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
 
@@ -18,9 +20,9 @@ public class Case {
 	public Case(Point2D pos){
 		empty = true;
 		try{
-		bkg = ImageIO.read(this.getClass().getResource("/ressources/herbe.png"));
+			bkg = ImageIO.read(new File(this.getClass()+"../../ressources/herbe.png"));
 		}catch(Exception e){
-			System.err.println("NIQUE BIEN TA MERE");;
+			System.err.println("Error: case could not load img");
 		}
 		this.position = pos;
 	}

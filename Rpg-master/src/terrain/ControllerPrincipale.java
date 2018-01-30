@@ -47,13 +47,17 @@ public class ControllerPrincipale {
 		System.out.println("INITIALIZING TERRAIN");
 		map = new Terrain();
 		System.out.println("INITIALIZING STUFF LIST");
+
+		int cpt = 0;
 		try{
-		BufferedReader br = new BufferedReader(new FileReader(new File("/2DTestGame/data/items.csv")));
+		BufferedReader br = new BufferedReader(new FileReader(new File(this.getClass()+"../../data/items.csv")));
 		String ligne = null;
 		while((ligne=br.readLine())!=null){
+			cpt++;
 			//get la ligne decompsee
 			String[] data = ligne.split(";");
-			File f = new File(data[1]);
+			File f = new File(this.getClass()+"../.."+data[1]);
+			System.out.println(f.getPath());
 			//get booleans from data
 			boolean b1,b2,b3;
 			b1=data[2].equals("true");
@@ -75,7 +79,7 @@ public class ControllerPrincipale {
 				);*/
 		br.close();
 		}catch(Exception e){
-			System.err.println("SOMETHING WENT WRONG: "+e.toString());
+			System.err.println("SOMETHING WENT WRONG while reading csv ligne "+cpt+": "+e.toString());
 		}
 		lst.setItems(obsList);
 		lst.setCellFactory(contentListView -> new ContentListViewCell());
