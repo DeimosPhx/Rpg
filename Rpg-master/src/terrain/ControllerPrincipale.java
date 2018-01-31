@@ -1,5 +1,6 @@
 package terrain;
 
+import java.awt.List;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageFilter;
 import java.io.BufferedReader;
@@ -47,17 +48,17 @@ public class ControllerPrincipale {
 		System.out.println("INITIALIZING TERRAIN");
 		map = new Terrain();
 		System.out.println("INITIALIZING STUFF LIST");
-
+		obsList = FXCollections.observableArrayList();
 		int cpt = 0;
 		try{
-		BufferedReader br = new BufferedReader(new FileReader(new File(this.getClass()+"../../data/items.csv")));
+			File csv = new File(this.getClass()+"../../data/items.csv");
+		BufferedReader br = new BufferedReader(new FileReader(csv));
 		String ligne = null;
 		while((ligne=br.readLine())!=null){
 			cpt++;
 			//get la ligne decompsee
-			String[] data = ligne.split(";");
+			String[] data = ligne.split(",");
 			File f = new File(this.getClass()+"../.."+data[1]);
-			System.out.println(f.getPath());
 			//get booleans from data
 			boolean b1,b2,b3;
 			b1=data[2].equals("true");
@@ -65,21 +66,24 @@ public class ControllerPrincipale {
 			b3=data[4].equals("true");
 			//creation de l'item a partir des data & add it to the list
 			try{
-				obsList.add(new Item(data[0],ImageIO.read(f),b1,b2,b3));
+				Item i = new Item(data[0],ImageIO.read(f),b1,b2,b3);
+				System.out.println(i);
+				obsList.add(i);
 			}catch(Exception e){
 				System.err.println("FDP");
 			}
 		}
 		/*Item herbe = new Item("Herbe", new Image("/ressources/herbe.png"), false, true, false);
 		Item rock = new Item("rock", new Image("/ressources/rock.png"), false, true, true);
-		*/obsList = FXCollections.observableArrayList();/*
+		*//*
 		obsList.addAll(
 				herbe,
 				rock
 				);*/
 		br.close();
 		}catch(Exception e){
-			System.err.println("SOMETHING WENT WRONG while reading csv ligne "+cpt+": "+e.toString());
+			System.err.println("SOMETHING WENT WRONG: ");
+			e.printStackTrace();
 		}
 		lst.setItems(obsList);
 		lst.setCellFactory(contentListView -> new ContentListViewCell());
